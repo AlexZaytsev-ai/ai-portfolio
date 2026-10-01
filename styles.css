@@ -231,7 +231,7 @@ h2 em { color: var(--blue); font-style: normal; }
   .skills-grid, .about-grid { grid-template-columns: 1fr; gap: 35px; }
   .about-section { padding: 78px 0 85px; }
   .about-aside { padding-top: 0; }
-  .about-symbol { margin-bottom: 18px; }
+  .about-symbol { display: none; }
   .contact-panel { align-items: start; flex-direction: column; gap: 34px; }
   .contact-options { width: min(100%, 420px); }
 }
