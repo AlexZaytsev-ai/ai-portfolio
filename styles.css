@@ -40,6 +40,7 @@ svg { display: block; }
 .brand-name { font-size: 12px; line-height: 1.15; font-weight: 750; }
 .site-nav { display: flex; align-items: center; justify-content: center; gap: clamp(20px, 3vw, 45px); flex: 1; }
 .site-nav a { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; font-weight: 650; color: #445353; transition: color .2s; }
+.site-nav .mobile-nav-github { display: none; }
 .site-nav a:hover, .site-nav a.active { color: var(--blue); }
 .header-github { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; flex: 0 0 auto; font-size: 13px; font-weight: 750; }
 .header-github svg { width: 18px; height: 18px; }
@@ -212,14 +213,15 @@ h2 em { color: var(--blue); font-style: normal; }
   .container { width: min(100% - 40px, 560px); }
   .header-inner { min-height: 72px; }
   .brand-mark { font-size: 28px; }
-  .header-github { margin-left: auto; }
-  .menu-toggle { display: flex; position: relative; z-index: 22; flex-direction: column; justify-content: center; gap: 6px; width: 44px; height: 44px; margin-left: 4px; border: 1px solid var(--line); border-radius: 9px; background: #fff; cursor: pointer; }
+  .header-github { display: none; }
+  .menu-toggle { display: flex; position: relative; z-index: 22; flex: 0 0 44px; flex-direction: column; justify-content: center; gap: 6px; width: 44px; height: 44px; margin-left: auto; border: 1px solid var(--line); border-radius: 9px; background: #fff; cursor: pointer; }
   .menu-toggle span { display: block; width: 18px; height: 2px; margin-inline: auto; border-radius: 2px; background: var(--ink); transition: transform .2s; }
   .menu-toggle[aria-expanded="true"] span:first-child { transform: translateY(4px) rotate(45deg); }
   .menu-toggle[aria-expanded="true"] span:last-child { transform: translateY(-4px) rotate(-45deg); }
   .site-nav { display: none; position: absolute; top: 71px; left: 0; right: 0; z-index: 21; flex-direction: column; align-items: stretch; gap: 0; padding: 13px 20px 21px; border-bottom: 1px solid var(--line); background: var(--bg); box-shadow: 0 20px 30px rgba(17,39,35,.1); }
   .site-nav.is-open { display: flex; }
   .site-nav a { width: min(100%, 560px); margin-inline: auto; padding: 15px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+  .site-nav .mobile-nav-github { display: inline-flex; }
   .hero { padding: 68px 0 80px; }
   .hero-grid { grid-template-columns: 1fr; gap: 58px; }
   h1 { max-width: 600px; font-size: clamp(47px, 9vw, 67px); }
@@ -250,8 +252,6 @@ h2 em { color: var(--blue); font-style: normal; }
   .container { width: min(100% - 32px, 560px); }
   .header-inner { gap: 10px; }
   .brand-name { font-size: 11px; }
-  .header-github { font-size: 12px; gap: 4px; }
-  .header-github svg { width: 15px; }
   .hero { padding-top: 58px; }
   .eyebrow { font-size: 11px; }
   h1 { font-size: clamp(42px, 11vw, 50px); }
