@@ -272,3 +272,9 @@ h2 em { color: var(--blue); font-style: normal; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+/* Реальный клиентский проект — первая карточка на всю ширину. */
+@media (min-width: 881px) {
+  .project-card-client { grid-column: 1 / -1; min-height: 0; }
+  .project-card-client .card-details { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 24px; }
+}
