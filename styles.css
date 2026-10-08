@@ -122,6 +122,35 @@ h1 span { color: var(--blue); }
 .workflow-check { display: grid; place-items: center; width: 17px; height: 17px; border-radius: 50%; background: #83d9aa; color: #173b2b; font-size: 11px; font-weight: 800; }
 .workflow-bottom-code { margin-left: auto; color: #a9c8b9; font-size: 11px; }
 
+/* Five one-second highlights, followed by three seconds at rest. */
+@keyframes workflow-step-highlight {
+  0%, 12.5%, 100% {
+    border-color: rgba(223, 239, 232, .15);
+    background-color: rgba(255, 255, 255, .065);
+  }
+  4.375%, 8.125% {
+    border-color: rgba(131, 217, 170, .5);
+    background-color: rgba(255, 255, 255, .11);
+  }
+}
+
+@keyframes workflow-result-highlight {
+  0%, 12.5%, 100% { box-shadow: 0 0 0 0 rgba(131, 217, 170, 0); }
+  4.375%, 8.125% { box-shadow: 0 0 0 5px rgba(131, 217, 170, .2); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .workflow.is-animating .workflow-step {
+    animation: workflow-step-highlight 8s ease-in-out infinite;
+  }
+  .workflow.is-animating .workflow-step:nth-child(2) { animation-delay: 1s; }
+  .workflow.is-animating .workflow-step:nth-child(3) { animation-delay: 2s; }
+  .workflow.is-animating .workflow-step:nth-child(4) { animation-delay: 3s; }
+  .workflow.is-animating .workflow-check {
+    animation: workflow-result-highlight 8s ease-in-out 4s infinite;
+  }
+}
+
 .section { padding: 100px 0 110px; }
 .projects-section { border-top: 1px solid var(--line); background: #fff; }
 .section-kicker span { color: var(--blue); font-weight: 850; }

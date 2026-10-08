@@ -33,3 +33,26 @@ window.addEventListener('resize', () => {
 });
 
 document.querySelector('#year').textContent = new Date().getFullYear();
+
+const workflow = document.querySelector('.workflow');
+
+if (workflow && 'IntersectionObserver' in window) {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let workflowIsVisible = false;
+
+  function updateWorkflowAnimation() {
+    workflow.classList.toggle(
+      'is-animating',
+      workflowIsVisible && !document.hidden && !reducedMotion.matches
+    );
+  }
+
+  const workflowObserver = new IntersectionObserver(([entry]) => {
+    workflowIsVisible = entry.isIntersecting && entry.intersectionRatio >= .35;
+    updateWorkflowAnimation();
+  }, { threshold: .35 });
+
+  workflowObserver.observe(workflow);
+  document.addEventListener('visibilitychange', updateWorkflowAnimation);
+  reducedMotion.addEventListener('change', updateWorkflowAnimation);
+}
