@@ -66,3 +66,10 @@ dialog::backdrop{background:#172524bb;backdrop-filter:blur(5px)}
 .hero .primary{gap:10px;padding-inline:19px;justify-content:center;align-items:center}
 .hero .primary>span{line-height:1;display:inline-flex;align-items:center;justify-content:center;flex:none}
 @media(max-width:680px){.hero .primary{padding-inline:13px}}
+
+/* Preserve the complete header and crop only the Men's Health hero to the card edge. */
+.design-cover.health{container-type:inline-size}
+.health .design-preview{position:absolute;left:26px;right:26px;top:calc(50% - 100cqw / 3.2);bottom:0;width:auto;aspect-ratio:auto;display:flex;flex-direction:column;overflow:hidden;border-radius:4px 4px 0 0;box-shadow:0 10px 35px #18242213}
+.health .design-preview>img{position:static;box-shadow:none}
+.health .health-preview-header{width:100%;height:auto;flex:none}
+.health .health-preview-photo{width:100%;height:0;min-height:0;flex:1;object-fit:cover;object-position:0% 0%;border-radius:0}
