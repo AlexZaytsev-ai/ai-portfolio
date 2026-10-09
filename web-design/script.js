@@ -193,7 +193,9 @@ function setMenu(open) {
 menuButton.addEventListener('click', () => setMenu(menuButton.getAttribute('aria-expanded') !== 'true'));
 navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
 document.addEventListener('keydown', event => {if (event.key === 'Escape') setMenu(false);});
-document.addEventListener('click', event => {if (!event.target.closest('.header')) setMenu(false);});
+const closeMenuOutside = event => {if (!event.target.closest('.header')) setMenu(false);};
+document.addEventListener('pointerdown', closeMenuOutside);
+document.addEventListener('click', closeMenuOutside);
 window.addEventListener('resize', () => {if (window.innerWidth > 680) setMenu(false);});
 document.querySelector('#year').textContent = new Date().getFullYear();
 
