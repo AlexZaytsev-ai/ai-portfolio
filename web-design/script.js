@@ -1,12 +1,12 @@
 'use strict';
-const imageDimensions = {"barier-banner.webp":[1180,420],"cooking-cover.webp":[1440,988],"cooking-home.webp":[1440,2787],"cooking-mobile.webp":[1440,1740],"cooking-program.webp":[1440,5377],"dubai-cover-original.png":[2598,1271],"dubai-page-original.png":[2598,14584],"health-article.webp":[1329,7931],"health-cover.webp":[1440,1002],"health-home.webp":[1440,5179],"health-mobile.webp":[1440,1055],"health-section.webp":[1440,3538],"psychologist-cover.webp":[1363,695],"psychologist-page.webp":[1363,7546],"snow-cart.webp":[1440,1340],"snow-catalog.webp":[1440,2176],"snow-checkout.webp":[1440,1340],"snow-cover.webp":[1440,1314],"snow-home.webp":[1440,4801],"snow-mobile.webp":[1440,2037],"snow-product.webp":[1440,2600],"structura-about-original.png":[2646,11021],"structura-contact-original.png":[2646,3160],"structura-cover-original.png":[2520,1125],"structura-home-original.png":[2646,9659],"structura-projects-original.png":[2646,10070],"structura-services-original.png":[2646,7717]};
+const imageDimensions = {"barier-banner.webp":[1180,420],"cooking-cover.webp":[1440,988],"cooking-home.webp":[1440,2787],"cooking-mobile.webp":[1440,1740],"cooking-program.webp":[1440,5377],"dubai-cover-original.png":[2598,1271],"dubai-page-original.png":[2598,13174],"health-article.webp":[1329,7931],"health-cover.webp":[1440,1002],"health-home.webp":[1440,5179],"health-mobile.webp":[1440,1055],"health-section.webp":[1440,3538],"psychologist-cover.webp":[1363,695],"psychologist-page.webp":[1363,7546],"snow-cart.webp":[1440,1340],"snow-catalog.webp":[1440,2176],"snow-checkout.webp":[1440,1340],"snow-cover.webp":[1440,1314],"snow-home.webp":[1440,4801],"snow-mobile.webp":[1440,2037],"snow-product.webp":[1440,2600],"structura-about-original.png":[2646,10484],"structura-contact-original.png":[2646,3046],"structura-cover-original.png":[2520,1125],"structura-home-original.png":[2646,8741],"structura-projects-original.png":[2646,9712],"structura-services-original.png":[2646,7000]};
 const projectData = {
   structura: {
     title: 'Structura', label: 'Многостраничный сайт / Tilda / 5 страниц',
     description: 'Многостраничный сайт строительной компании. Главная, услуги, о компании, проекты и контакты оформлены в едином стиле.',
     work: 'Структура страниц, визуальное оформление, сборка на Tilda и настройка анимации.',
     value: 'Единая структура помогает посетителю познакомиться с компанией, сравнить услуги, посмотреть проекты и перейти к обращению.',
-    images: [['structura-home-original.png','Главная страница'],['structura-services-original.png','Услуги'],['structura-about-original.png','О компании'],['structura-projects-original.png','Проекты'],['structura-contact-original.png','Контакты']]
+    images: [['structura-home-original.png','Главная'],['structura-services-original.png','Услуги'],['structura-about-original.png','О компании'],['structura-projects-original.png','Проекты'],['structura-contact-original.png','Контакты']]
   },
   dubai: {
     title: 'Dubai Estate', label: 'Лендинг недвижимости / Tilda',
@@ -80,12 +80,17 @@ function openProject(key, trigger) {
   }
   const gallery = document.querySelector('#dialog-gallery');
   gallery.replaceChildren();
-  project.images.forEach(([filename, label], index) => {
+  const createFigure = ([filename, label], index, singlePage = false) => {
     const figure = create('figure', 'gallery-item');
-    figure.id = 'project-page-' + index;
+    figure.id = singlePage ? 'structura-page' : 'project-page-' + index;
+    if (singlePage) {
+      figure.setAttribute('role', 'tabpanel');
+      figure.setAttribute('aria-labelledby', 'structura-tab-' + index);
+      figure.tabIndex = 0;
+    }
     const img = create('img');
-    img.src = 'assets/' + filename + '?v=20261009-3'; img.alt = project.title + ' — ' + label;
-    img.loading = index < 2 ? 'eager' : 'lazy';
+    img.src = 'assets/' + filename + '?v=20261009-4'; img.alt = project.title + ' — ' + label;
+    img.loading = singlePage || index < 2 ? 'eager' : 'lazy';
     img.decoding = 'async';
     const size = imageDimensions[filename];
     if (size) {
@@ -102,15 +107,58 @@ function openProject(key, trigger) {
     preview.href = img.src; preview.target = '_blank'; preview.rel = 'noopener noreferrer';
     preview.setAttribute('aria-label', label + ' — рассмотреть в отдельной вкладке');
     preview.append(img);
-    figure.append(caption, preview); gallery.append(figure);
-  });
+    figure.append(caption, preview);
+    return figure;
+  };
   const galleryNav = document.querySelector('#gallery-navigation');
   galleryNav.replaceChildren();
   galleryNav.hidden = project.images.length < 2;
+  const singlePage = key === 'structura';
+  galleryNav.classList.toggle('structura-tabs', singlePage);
+  if (singlePage) {
+    galleryNav.setAttribute('role', 'tablist');
+    document.querySelector('.dialog-header').append(galleryNav);
+  } else {
+    galleryNav.removeAttribute('role');
+    gallery.before(galleryNav);
+    project.images.forEach((image, index) => gallery.append(createFigure(image, index)));
+  }
+  const selectPage = (index, resetScroll) => {
+    gallery.replaceChildren(createFigure(project.images[index], index, true));
+    galleryNav.querySelectorAll('button').forEach((button, i) => {
+      button.setAttribute('aria-selected', String(i === index));
+      button.tabIndex = i === index ? 0 : -1;
+    });
+    if (resetScroll) {
+      const headerHeight = document.querySelector('.dialog-header').offsetHeight;
+      const top = dialog.scrollTop + gallery.getBoundingClientRect().top - dialog.getBoundingClientRect().top - headerHeight - 16;
+      dialog.scrollTo({top: Math.max(0, top), behavior: 'instant'});
+    }
+  };
   if (project.images.length > 1) project.images.forEach(([, label], index) => {
     const button = create('button', 'gallery-nav-item', label);
     button.type = 'button';
+    if (singlePage) {
+      button.id = 'structura-tab-' + index;
+      button.setAttribute('role', 'tab');
+      button.setAttribute('aria-controls', 'structura-page');
+      button.addEventListener('keydown', event => {
+        let next;
+        if (event.key === 'ArrowRight') next = (index + 1) % project.images.length;
+        if (event.key === 'ArrowLeft') next = (index + project.images.length - 1) % project.images.length;
+        if (event.key === 'Home') next = 0;
+        if (event.key === 'End') next = project.images.length - 1;
+        if (next === undefined) return;
+        event.preventDefault();
+        selectPage(next, true);
+        galleryNav.children[next].focus({preventScroll: true});
+      });
+    }
     button.addEventListener('click', () => {
+      if (singlePage) {
+        selectPage(index, true);
+        return;
+      }
       const figure = document.querySelector('#project-page-' + index);
       const headerHeight = document.querySelector('.dialog-header').offsetHeight;
       const top = dialog.scrollTop + figure.getBoundingClientRect().top - dialog.getBoundingClientRect().top - headerHeight - 16;
@@ -118,6 +166,7 @@ function openProject(key, trigger) {
     });
     galleryNav.append(button);
   });
+  if (singlePage) selectPage(0, false);
   dialog.showModal(); dialog.scrollTop = 0;
   document.body.classList.add('body-locked');
 }
