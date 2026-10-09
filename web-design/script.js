@@ -1,19 +1,19 @@
 'use strict';
-const imageDimensions = {"barier-banner.webp":[1180,420],"cooking-cover.webp":[1440,988],"cooking-home.webp":[1440,2787],"cooking-mobile.webp":[1440,1740],"cooking-program.webp":[1440,5377],"dubai-cover.webp":[333,163],"dubai-page.webp":[333,1816],"health-article.webp":[1329,7931],"health-cover.webp":[1440,1002],"health-home.webp":[1440,5179],"health-mobile.webp":[1440,1055],"health-section.webp":[1440,3538],"psychologist-cover.webp":[1363,695],"psychologist-page.webp":[1363,7546],"snow-cart.webp":[1440,1340],"snow-catalog.webp":[1440,2176],"snow-checkout.webp":[1440,1340],"snow-cover.webp":[1440,1314],"snow-home.webp":[1440,4801],"snow-mobile.webp":[1440,2037],"snow-product.webp":[1440,2600],"structura-about.webp":[414,1899],"structura-contact.webp":[1100,1441],"structura-cover.webp":[593,265],"structura-home.webp":[593,1812],"structura-projects.webp":[456,1900],"structura-services.webp":[593,1808]};
+const imageDimensions = {"barier-banner.webp":[1180,420],"cooking-cover.webp":[1440,988],"cooking-home.webp":[1440,2787],"cooking-mobile.webp":[1440,1740],"cooking-program.webp":[1440,5377],"dubai-cover-original.png":[2598,1271],"dubai-page-original.png":[2598,14584],"health-article.webp":[1329,7931],"health-cover.webp":[1440,1002],"health-home.webp":[1440,5179],"health-mobile.webp":[1440,1055],"health-section.webp":[1440,3538],"psychologist-cover.webp":[1363,695],"psychologist-page.webp":[1363,7546],"snow-cart.webp":[1440,1340],"snow-catalog.webp":[1440,2176],"snow-checkout.webp":[1440,1340],"snow-cover.webp":[1440,1314],"snow-home.webp":[1440,4801],"snow-mobile.webp":[1440,2037],"snow-product.webp":[1440,2600],"structura-about-original.png":[2646,11021],"structura-contact-original.png":[2646,3160],"structura-cover-original.png":[2520,1125],"structura-home-original.png":[2646,9659],"structura-projects-original.png":[2646,10070],"structura-services-original.png":[2646,7717]};
 const projectData = {
   structura: {
     title: 'Structura', label: 'Многостраничный сайт / Tilda / 5 страниц',
     description: 'Многостраничный сайт строительной компании. Главная, услуги, о компании, проекты и контакты оформлены в едином стиле.',
     work: 'Структура страниц, визуальное оформление, сборка на Tilda и настройка анимации.',
     value: 'Единая структура помогает посетителю познакомиться с компанией, сравнить услуги, посмотреть проекты и перейти к обращению.',
-    images: [['structura-home.webp','Главная страница'],['structura-services.webp','Услуги'],['structura-about.webp','О компании'],['structura-projects.webp','Проекты'],['structura-contact.webp','Контакты']]
+    images: [['structura-home-original.png','Главная страница'],['structura-services-original.png','Услуги'],['structura-about-original.png','О компании'],['structura-projects-original.png','Проекты'],['structura-contact-original.png','Контакты']]
   },
   dubai: {
     title: 'Dubai Estate', label: 'Лендинг недвижимости / Tilda',
     description: 'Лендинг для презентации недвижимости: инвестиционные стратегии, проекты, актуальные предложения, ответы на вопросы и запрос расчёта.',
     work: 'Оформление и сборка лендинга на Tilda, карточки предложений, блок вопросов и форма. Настройка анимации.',
     value: 'Объекты, инвестиционные стратегии и ответы на вопросы собраны в последовательную презентацию с переходом к запросу расчёта.',
-    images: [['dubai-page.webp','Лендинг целиком']]
+    images: [['dubai-page-original.png','Лендинг целиком']]
   },
   psychologist: {
     title: 'Лендинг психолога', label: 'Сайт специалиста / Tilda',
@@ -84,7 +84,7 @@ function openProject(key, trigger) {
     const figure = create('figure', 'gallery-item');
     figure.id = 'project-page-' + index;
     const img = create('img');
-    img.src = 'assets/' + filename + '?v=20261009-2'; img.alt = project.title + ' — ' + label;
+    img.src = 'assets/' + filename + '?v=20261009-3'; img.alt = project.title + ' — ' + label;
     img.loading = index < 2 ? 'eager' : 'lazy';
     img.decoding = 'async';
     const size = imageDimensions[filename];
