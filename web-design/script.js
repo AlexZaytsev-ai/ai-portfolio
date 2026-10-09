@@ -1,5 +1,5 @@
 'use strict';
-const imageDimensions = {"barier-banner.webp":[1180,420],"cooking-cover.webp":[1440,988],"cooking-home.webp":[1440,2787],"cooking-mobile.webp":[1440,1740],"cooking-program.webp":[1440,5377],"dubai-cover-original.png":[2598,1271],"dubai-page-original.png":[2598,13174],"health-article.webp":[1329,7931],"health-cover.webp":[1440,1002],"health-home.webp":[1440,5179],"health-mobile.webp":[1440,1055],"health-section.webp":[1440,3538],"psychologist-cover.webp":[1363,695],"psychologist-page-clean.png":[1363,7544],"snow-cart.webp":[1440,1340],"snow-catalog.webp":[1440,2176],"snow-checkout.webp":[1440,1340],"snow-cover.webp":[1440,1314],"snow-home.webp":[1440,4801],"snow-mobile.webp":[1440,2037],"snow-product.webp":[1440,2600],"structura-about-original.png":[2646,10462],"structura-contact-original.png":[2646,3024],"structura-cover-original.png":[2520,1125],"structura-home-original.png":[2646,8719],"structura-projects-original.png":[2646,9690],"structura-services-original.png":[2646,6978]};
+const imageDimensions = {"barier-banner.webp":[1180,420],"cooking-cover.webp":[1440,988],"cooking-home.webp":[1440,2787],"cooking-mobile.webp":[1440,1740],"cooking-program.webp":[1440,5377],"dubai-cover-original.png":[2598,1271],"dubai-page-original.png":[2598,13174],"health-article.webp":[1329,7931],"health-cover.webp":[1440,1002],"health-home.webp":[1440,5179],"health-mobile.webp":[1440,1055],"health-section.webp":[1440,3538],"psychologist-cover-clean.png":[1363,695],"psychologist-page-clean.png":[1363,7544],"snow-cart.webp":[1440,1340],"snow-catalog.webp":[1440,2176],"snow-checkout.webp":[1440,1340],"snow-cover.webp":[1440,1314],"snow-home.webp":[1440,4801],"snow-mobile.webp":[1440,2037],"snow-product.webp":[1440,2600],"structura-about-original.png":[2646,10462],"structura-contact-original.png":[2646,3024],"structura-cover-original.png":[2520,1125],"structura-cover-framed.png":[2520,1200],"structura-home-original.png":[2646,8719],"structura-projects-original.png":[2646,9690],"structura-services-original.png":[2646,6978]};
 const projectData = {
   structura: {
     title: 'Structura', label: 'Многостраничный сайт / Tilda / 5 страниц',
@@ -89,7 +89,7 @@ function openProject(key, trigger) {
       figure.tabIndex = 0;
     }
     const img = create('img');
-    img.src = 'assets/' + filename + '?v=20261009-7'; img.alt = project.title + ' — ' + label;
+    img.src = 'assets/' + filename + '?v=20261009-8'; img.alt = project.title + ' — ' + label;
     img.loading = singlePage || index < 2 ? 'eager' : 'lazy';
     img.decoding = 'async';
     const size = imageDimensions[filename];

@@ -23,3 +23,13 @@ https://alexzaytsev-ai.github.io/ai-portfolio/web-design/
 Обновление оформления: карточки Figma используют единый формат превью 16:10 с пропорциональным кадрированием в CSS; полные макеты сохранены. Плашка и контактный блок используют общую переменную --forest. Шапка поддерживает синее наведение и клавиатурный фокус. Верх карточки Structura выровнен с началом основного заголовка на компьютере. Фотография в разделе «Обо мне» скопирована из исходного PNG без обработки и показывается целиком.
 
 Уточнение оформления: контактный фон #1E3535; карточки Figma показывают полные главные страницы с обрезкой нижним краем карточки, сохраняя размер рамок и положение начала изображения. Синяя кнопка стала примерно на 10–11% уже, текст и стрелка центрированы с отступом 10 px.
+
+Обновление превью: названия Tilda-проектов центрированы независимо от трёх точек. Области изображений увеличены на 7 CSS px вниз при сохранении верхних краёв и размеров внешних карточек. Превью Structura `assets/structura-cover-framed.png` (2520 × 1200) обрезано из сохранённой главной страницы без масштабирования; под золотой кнопкой остаётся свободное пространство.
+
+Удаление курсора психолога: встроенный инструмент imagegen восстановил фон в небольшом фрагменте. В `assets/psychologist-page-clean.png` (1363 × 7544) заменён только участок 44 × 44 px с координатами (780, 378); в `assets/psychologist-cover-clean.png` (1363 × 695) — участок (780, 235). Края локальной вставки плавно соединены с исходным фоном. Сравнение пикселей подтвердило, что за пределами этих участков изображение не менялось. Галерея и «Открыть отдельно» используют один очищенный полный макет.
+
+Запрос встроенному imagegen:
+
+```text
+Use case: precise-object-edit. Edit target: attached 128x128 crop from an existing website screenshot. Remove ONLY the small black mouse cursor with its pale cyan/white outline and glow near the center (approximately x=65,y=63). Restore that tiny patch using the surrounding misty grey mountain background, matching the existing muted colour, grain, and diagonal mountain contours. Preserve the exact crop framing, scale, composition, colours and every other detail. Do not alter the partial person at the far left. No new objects, text, arrows, logos or decoration. Opaque background. This is a precise restoration, not a redesign.
+```
