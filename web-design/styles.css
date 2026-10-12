@@ -108,3 +108,6 @@ dialog::backdrop{background:#172524bb;backdrop-filter:blur(5px)}
 .contact-section .eyebrow,.contact-section>div>p:not(.eyebrow),.contact-item small,.contact-hint{color:#d6dfeb}
 .contact-item,.contact-arrow{border-color:var(--panel-border)}
 .contact-item:hover .contact-arrow,.contact-item:focus-visible .contact-arrow{background:#fff;color:#24344a}
+
+/* Stack the scope note on phones without narrowing its text. */
+@media(max-width:680px){.scope-note{position:relative;flex-direction:column;align-items:stretch;gap:22px;padding-block:18px;margin-top:18px}.scope-note .scope-symbol{position:absolute;top:18px;left:0;font-size:20px;line-height:18px}.scope-note p{flex:none;width:100%;max-width:none;text-indent:18px}.scope-note>.text-link{align-self:flex-start;margin-left:0;min-height:44px;box-sizing:border-box;padding-block:12px}}
