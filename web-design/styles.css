@@ -89,3 +89,14 @@ dialog::backdrop{background:#172524bb;backdrop-filter:blur(5px)}
 /* Keep the compact header action on one line beside the signature and menu. */
 @media(max-width:680px){.header-contact{white-space:nowrap;flex:none}}
 @media(min-width:361px) and (max-width:400px){.header-inner{gap:6px}.brand{gap:10px}.header-contact{padding-inline:6px;gap:6px}}
+
+/* Green backgrounds for the Barrier case and contact panel. */
+.featured-visual,.contact-section{background:#6f9163;color:#142017}
+.featured-meta,.featured-note,.barier-flow small,.barier-flow>span:nth-child(even){color:inherit}
+.case-status{border-color:#344b2e}.case-status .dot{background:#142017}.barier-flow{border-color:#344b2e}
+.featured-copy{background:#57724c}
+.featured-copy>.eyebrow,.case-intro,.case-facts dd,.featured-copy .tags>span,.featured-links>a:hover{color:#fff}
+.featured-links>a{border-color:#ffffff80}.featured-links>a:hover{text-decoration:underline}
+.contact-section h2{color:#fff}
+.contact-section>div>p:not(.eyebrow),.contact-item small,.contact-hint{color:inherit}
+.contact-item,.contact-arrow{border-color:#344b2e}
