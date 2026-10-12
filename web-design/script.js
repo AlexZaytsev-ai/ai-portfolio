@@ -89,7 +89,7 @@ function openProject(key, trigger) {
       figure.tabIndex = 0;
     }
     const img = create('img');
-    img.src = 'assets/' + filename + '?v=20261009-8'; img.alt = project.title + ' — ' + label;
+    img.src = 'assets/' + filename + '?v=20261012-4'; img.alt = project.title + ' — ' + label;
     img.loading = singlePage || index < 2 ? 'eager' : 'lazy';
     img.decoding = 'async';
     const size = imageDimensions[filename];
