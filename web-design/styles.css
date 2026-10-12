@@ -90,13 +90,21 @@ dialog::backdrop{background:#172524bb;backdrop-filter:blur(5px)}
 @media(max-width:680px){.header-contact{white-space:nowrap;flex:none}}
 @media(min-width:361px) and (max-width:400px){.header-inner{gap:6px}.brand{gap:10px}.header-contact{padding-inline:6px;gap:6px}}
 
-/* Green backgrounds for the Barrier case and contact panel. */
-.featured-visual,.contact-section{background:#6f9163;color:#142017}
-.featured-meta,.featured-note,.barier-flow small,.barier-flow>span:nth-child(even){color:inherit}
-.case-status{border-color:#344b2e}.case-status .dot{background:#142017}.barier-flow{border-color:#344b2e}
-.featured-copy{background:#57724c}
-.featured-copy>.eyebrow,.case-intro,.case-facts dd,.featured-copy .tags>span,.featured-links>a:hover{color:#fff}
-.featured-links>a{border-color:#ffffff80}.featured-links>a:hover{text-decoration:underline}
-.contact-section h2{color:#fff}
-.contact-section>div>p:not(.eyebrow),.contact-item small,.contact-hint{color:inherit}
-.contact-item,.contact-arrow{border-color:#344b2e}
+/* Slate palette for the Barrier case and contact panel. */
+.featured-case{background:#24344a}
+.featured-visual{background:#e7ecf2;color:#24344a}
+.featured-meta,.featured-note,.barier-flow small{color:#526174}
+.barier-flow>span:nth-child(even){color:#485bff}
+.case-status,.barier-flow{border-color:rgb(36 52 74 / 20%)}
+.case-status .dot{background:#485bff}
+.featured-copy,.contact-section{background:#24344a;--panel-border:rgb(255 255 255 / 20%)}
+.featured-copy{color:#d6dfeb}
+.featured-copy h3,.case-facts dt,.featured-links>a{color:#fff}
+.featured-copy>.eyebrow,.case-intro,.case-facts dd,.featured-copy .tags>span{color:#d6dfeb}
+.featured-copy .tags>span,.featured-links>a{border-color:var(--panel-border)}
+.featured-links>a:hover,.featured-links>a:focus-visible{color:#fff;text-decoration:underline}
+.featured-links>a:focus-visible{outline-color:#fff}
+.contact-section,.contact-section h2{color:#fff}
+.contact-section .eyebrow,.contact-section>div>p:not(.eyebrow),.contact-item small,.contact-hint{color:#d6dfeb}
+.contact-item,.contact-arrow{border-color:var(--panel-border)}
+.contact-item:hover .contact-arrow,.contact-item:focus-visible .contact-arrow{background:#fff;color:#24344a}
