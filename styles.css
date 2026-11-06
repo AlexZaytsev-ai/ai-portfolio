@@ -185,6 +185,24 @@ h2 em { color: var(--blue); font-style: normal; }
 .project-link:hover { color: #123b93; }
 .project-link span { font-size: 17px; line-height: 1; }
 
+.project-card-lead { grid-column: 1 / -1; min-width: 0; scroll-margin-top: 24px; }
+.lead-media { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); align-items: start; gap: 24px; margin-top: 26px; }
+.lead-media-item { min-width: 0; margin: 0; }
+.lead-demo-video, .lead-workflow-link { display: block; width: 100%; border: 1px solid var(--line); border-radius: 12px; background: var(--dark); }
+.lead-demo-video { aspect-ratio: 1 / 2; max-height: min(560px, 75svh); object-fit: contain; }
+.lead-workflow-link { position: relative; display: flex; align-items: center; aspect-ratio: 16 / 9; overflow: hidden; }
+.lead-workflow-link img { display: block; width: 100%; height: auto; }
+.lead-workflow-link > span { position: absolute; right: 12px; bottom: 12px; padding: 9px 12px; border: 1px solid #49605c; border-radius: 6px; background: var(--dark); color: #fff; font-size: 12px; font-weight: 650; }
+.lead-workflow-link:hover > span { background: var(--blue); }
+.lead-media-item figcaption { margin-top: 12px; color: var(--muted); font-size: 13px; line-height: 1.65; }
+.lead-media-item figcaption strong { display: block; margin-bottom: 3px; color: var(--ink); font-size: 14px; }
+@media (min-width: 881px) {
+  .project-card-lead .card-details { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 24px; }
+}
+@media (max-width: 760px) {
+  .lead-media { grid-template-columns: 1fr; }
+}
+
 .skills-section { background: var(--bg); }
 .skills-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(60px, 9vw, 140px); }
 .skills-intro h2 { margin-bottom: 24px; }
