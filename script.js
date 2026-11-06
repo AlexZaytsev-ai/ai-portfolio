@@ -56,3 +56,99 @@ if (workflow && 'IntersectionObserver' in window) {
   document.addEventListener('visibilitychange', updateWorkflowAnimation);
   reducedMotion.addEventListener('change', updateWorkflowAnimation);
 }
+
+const demoTrigger = document.querySelector('.lead-demo-trigger');
+const demoDialog = document.querySelector('#lead-demo-dialog');
+const demoVideo = demoDialog.querySelector('video');
+const demoStatus = demoDialog.querySelector('.demo-status');
+const demoAttachmentId = '66f44f74-8a7d-4aea-ae04-6d8efa9541a6';
+let demoSource = null;
+let demoSourceTime = 0;
+let demoLoadId = 0;
+
+function setDemoStatus(message) {
+  demoStatus.textContent = message;
+  demoStatus.hidden = !message;
+}
+
+async function getDemoSource() {
+  if (demoSource && Date.now() - demoSourceTime < 120000) return demoSource;
+
+  // GitHub signs attachment URLs for a few minutes. Resolve a fresh URL from
+  // the public README instead of committing an expiring token or using an iframe.
+  const response = await fetch('https://api.github.com/repos/AlexZaytsev-ai/Lead-intake-handoff/readme?ref=main', {
+    headers: { Accept: 'application/vnd.github.html+json' },
+    cache: 'no-store',
+    signal: AbortSignal.timeout(15000)
+  });
+  if (!response.ok) throw new Error('Demo source unavailable');
+  const readme = new DOMParser().parseFromString(await response.text(), 'text/html');
+  const video = Array.from(readme.querySelectorAll('video')).find((item) => item.src.includes(demoAttachmentId));
+  if (!video) throw new Error('Demo attachment not found');
+  const source = new URL(video.src);
+  if (source.protocol !== 'https:' || !['private-user-images.githubusercontent.com', 'github.com'].includes(source.hostname)) {
+    throw new Error('Unexpected demo host');
+  }
+  demoSource = source.href;
+  demoSourceTime = Date.now();
+  return demoSource;
+}
+
+demoTrigger.addEventListener('click', async () => {
+  if (demoDialog.open) return;
+  const loadId = ++demoLoadId;
+  demoDialog.showModal();
+  document.body.classList.add('demo-open');
+  setDemoStatus('Загружаю видео…');
+  try {
+    const source = await getDemoSource();
+    if (!demoDialog.open || loadId !== demoLoadId) return;
+    demoVideo.src = source;
+    demoVideo.load();
+  } catch {
+    if (demoDialog.open && loadId === demoLoadId) {
+      setDemoStatus('Не удалось загрузить видео. Откройте демо на GitHub по ссылке ниже.');
+    }
+  }
+});
+
+demoVideo.addEventListener('loadeddata', () => setDemoStatus(''));
+demoVideo.addEventListener('error', () => {
+  if (demoDialog.open && demoVideo.hasAttribute('src')) {
+    demoSource = null;
+    setDemoStatus('Не удалось загрузить видео. Откройте демо на GitHub по ссылке ниже.');
+  }
+});
+function resetDemo() {
+  ++demoLoadId;
+  demoVideo.pause();
+  demoVideo.removeAttribute('src');
+  demoVideo.load();
+  setDemoStatus('');
+  document.body.classList.remove('demo-open');
+}
+
+function closeDemo() {
+  resetDemo();
+  demoDialog.close();
+  demoTrigger.focus({ preventScroll: true });
+}
+
+demoDialog.querySelector('.demo-close').addEventListener('click', closeDemo);
+demoDialog.addEventListener('cancel', (event) => {
+  event.preventDefault();
+  closeDemo();
+});
+demoDialog.addEventListener('click', (event) => {
+  const rect = demoDialog.getBoundingClientRect();
+  if (event.target === demoDialog && (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom)) {
+    closeDemo();
+  }
+});
+demoDialog.addEventListener('close', () => {
+  // A queued close event must not interrupt a dialog that was reopened quickly.
+  if (!demoDialog.open) {
+    resetDemo();
+    demoTrigger.focus({ preventScroll: true });
+  }
+});
