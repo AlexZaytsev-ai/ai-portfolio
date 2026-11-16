@@ -132,7 +132,7 @@
           </div>
 
           <div class="project-grid">
-            <article class="project-card project-card-client">
+            <article class="project-card project-card-client" id="renaissance-invoice-approval" aria-labelledby="renaissance-project-title">
               <div class="card-top">
                 <span class="project-icon icon-green" aria-hidden="true">
                   <svg viewBox="0 0 32 32" fill="none"><path d="M8 4h11l5 5v19H8V4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M19 4v5h5M12 14h8M12 18h8M12 22h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
@@ -140,7 +140,7 @@
                 <span class="card-number">01 / 07</span>
               </div>
               <p class="card-category">ПРОЕКТ ДЛЯ РЕАЛЬНОГО ЗАКАЗЧИКА</p>
-              <h3>Ренессанс<br />Согласование счетов в&nbsp;Telegram</h3>
+              <h3 id="renaissance-project-title">Ренессанс<br />Согласование счетов в&nbsp;Telegram</h3>
               <div class="card-details">
                 <p><strong>Задача</strong> Автоматизировать проверку и&nbsp;согласование счетов поставщиков для компании «Ренессанс», контролировать дубли и&nbsp;изменения документов.</p>
                 <p><strong>Реализация</strong> n8n получает PDF из&nbsp;Gmail, извлекает данные с&nbsp;помощью ИИ, проверяет поставщика и&nbsp;реквизиты в&nbsp;PostgreSQL. Решения принимаются в&nbsp;Telegram, актуальный реестр обновляется в&nbsp;Google Sheets.</p>
@@ -148,7 +148,10 @@
               </div>
               <div class="card-footer">
                 <div class="card-tags"><span>n8n</span><span>Gmail</span><span>OpenAI</span><span>PostgreSQL</span><span>Telegram</span><span>Google Sheets</span></div>
-                <a class="project-link" href="https://github.com/AlexZaytsev-ai/Renaissance-Invoice-Approval" target="_blank" rel="noopener noreferrer" aria-label="Открыть кейс Ренессанс — Согласование счетов в Telegram на GitHub в новой вкладке">Кейс на&nbsp;GitHub <span aria-hidden="true">↗</span></a>
+                <div class="lead-actions">
+                  <button class="button button-primary lead-demo-trigger" type="button" aria-haspopup="dialog" aria-controls="renaissance-demo-dialog">Смотреть демо <span aria-hidden="true">▷</span></button>
+                  <a class="project-link" href="https://github.com/AlexZaytsev-ai/Renaissance-Invoice-Approval" target="_blank" rel="noopener noreferrer" aria-label="Открыть кейс Ренессанс — Согласование счетов в Telegram на GitHub в новой вкладке">Кейс на&nbsp;GitHub <span aria-hidden="true">↗</span></a>
+                </div>
               </div>
             </article>
 
@@ -351,6 +354,19 @@
         </div>
       </section>
     </main>
+
+    <dialog class="demo-dialog" id="renaissance-demo-dialog" aria-labelledby="renaissance-demo-dialog-title" aria-describedby="renaissance-demo-description" data-demo-repository="AlexZaytsev-ai/Renaissance-Invoice-Approval" data-demo-attachment="9e880288-1291-4bb6-b10c-c9ba1d107944">
+      <div class="demo-dialog-header">
+        <h2 id="renaissance-demo-dialog-title">Ренессанс · Согласование счетов в Telegram</h2>
+        <button class="demo-close" type="button" autofocus aria-label="Закрыть демонстрацию">Закрыть <span aria-hidden="true">×</span></button>
+      </div>
+      <video class="demo-video" controls playsinline preload="metadata" aria-label="Демонстрация обработки PDF-счёта, согласования в Telegram и обновления реестра"></video>
+      <div class="demo-dialog-footer">
+        <p id="renaissance-demo-description">82 секунды: обработка PDF-счёта, согласование в&nbsp;Telegram, новая версия и&nbsp;реестр Google Sheets.</p>
+        <p class="demo-status" role="status" aria-live="polite" hidden></p>
+        <a class="demo-fallback" href="https://github.com/AlexZaytsev-ai/Renaissance-Invoice-Approval#demo" target="_blank" rel="noopener noreferrer">Открыть демо на&nbsp;GitHub <span aria-hidden="true">↗</span></a>
+      </div>
+    </dialog>
 
     <dialog class="demo-dialog" id="barrier-demo-dialog" aria-labelledby="barrier-demo-dialog-title" aria-describedby="barrier-demo-description" data-demo-repository="AlexZaytsev-ai/Barrier-MAX-AI-Assistant" data-demo-attachment="1596ecda-935e-45b9-aa5e-37b444c984c4">
       <div class="demo-dialog-header">
